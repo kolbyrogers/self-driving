@@ -16,9 +16,12 @@ class Car {
   update() {
     this.Controls.forward ? (this.speed += this.acceleration) : null;
     this.Controls.reverse ? (this.speed -= this.acceleration) : null;
-    this.Controls.left ? (this.angle += 0.03) : null;
-    this.Controls.right ? (this.angle -= 0.03) : null;
 
+    if (this.speed != 0) {
+      const flip = this.speed > 0 ? 1 : -1;
+      this.Controls.left ? (this.angle += 0.03 * flip) : null;
+      this.Controls.right ? (this.angle -= 0.03 * flip) : null;
+    }
     this.speed > this.maxSpeed ? (this.speed = this.maxSpeed) : null;
     this.speed < -this.maxSpeed / 2 ? (this.speed = -this.maxSpeed / 2) : null;
 
