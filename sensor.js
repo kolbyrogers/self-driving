@@ -11,11 +11,9 @@ class Sensor {
   update() {
     this.rays = [];
     for (let i = 0; i < this.rayCount; i++) {
-      const angle = lerp(
-        this.raySpread / 2,
-        -this.raySpread / 2,
-        i / (this.rayCount - 1)
-      );
+      const angle =
+        lerp(this.raySpread / 2, -this.raySpread / 2, i / (this.rayCount - 1)) +
+        this.car.angle;
       const start = { x: this.car.x, y: this.car.y };
       const end = {
         x: this.car.x - Math.sin(angle) * this.rayLength,
