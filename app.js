@@ -5,6 +5,7 @@ networkCanvas.width = 500;
 
 let parallelCars = document.getElementById("parallelCars").value;
 let mutationRate = document.getElementById("mutationRate").value;
+let speed = document.getElementById("speed").value;
 
 const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
@@ -14,13 +15,27 @@ let traffic = [];
 
 let highest = 0;
 for (let i = 1; i < 25; i++) {
-  traffic.push(new Car(road.getLaneCenter(1), highest - 100, 30, 50, "DUMMY", 2));
-  traffic.push(new Car(road.getLaneCenter(0), highest - 300, 30, 50, "DUMMY", 3));
-  traffic.push(new Car(road.getLaneCenter(2), highest - 300, 30, 50, "DUMMY", 2));
-  traffic.push(new Car(road.getLaneCenter(0), highest - 500, 30, 50, "DUMMY", 3));
-  traffic.push(new Car(road.getLaneCenter(1), highest - 500, 30, 50, "DUMMY", 2));
-  traffic.push(new Car(road.getLaneCenter(1), highest - 700, 30, 50, "DUMMY", 2));
-  traffic.push(new Car(road.getLaneCenter(2), highest - 700, 30, 50, "DUMMY", 2));
+  traffic.push(
+    new Car(road.getLaneCenter(1), highest - 100, 30, 50, "DUMMY", (speed / 2) * 2)
+  );
+  traffic.push(
+    new Car(road.getLaneCenter(0), highest - 300, 30, 50, "DUMMY", (speed / 2) * 3)
+  );
+  traffic.push(
+    new Car(road.getLaneCenter(2), highest - 300, 30, 50, "DUMMY", (speed / 2) * 2)
+  );
+  traffic.push(
+    new Car(road.getLaneCenter(0), highest - 500, 30, 50, "DUMMY", (speed / 2) * 3)
+  );
+  traffic.push(
+    new Car(road.getLaneCenter(1), highest - 500, 30, 50, "DUMMY", (speed / 2) * 2)
+  );
+  traffic.push(
+    new Car(road.getLaneCenter(1), highest - 700, 30, 50, "DUMMY", (speed / 2) * 2)
+  );
+  traffic.push(
+    new Car(road.getLaneCenter(2), highest - 700, 30, 50, "DUMMY", (speed / 2) * 2)
+  );
   highest -= 800;
 }
 let cars = generateCars(parallelCars);
@@ -39,16 +54,31 @@ function restart() {
   carCtx.clearRect(0, 0, carCanvas.width, carCanvas.height);
   parallelCars = document.getElementById("parallelCars").value;
   mutationRate = document.getElementById("mutationRate").value;
+  speed = document.getElementById("speed").value;
   road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
   traffic = [];
   for (let i = 1; i < 25; i++) {
-    traffic.push(new Car(road.getLaneCenter(1), highest - 100, 30, 50, "DUMMY", 2));
-    traffic.push(new Car(road.getLaneCenter(0), highest - 300, 30, 50, "DUMMY", 3));
-    traffic.push(new Car(road.getLaneCenter(2), highest - 300, 30, 50, "DUMMY", 2));
-    traffic.push(new Car(road.getLaneCenter(0), highest - 500, 30, 50, "DUMMY", 3));
-    traffic.push(new Car(road.getLaneCenter(1), highest - 500, 30, 50, "DUMMY", 2));
-    traffic.push(new Car(road.getLaneCenter(1), highest - 700, 30, 50, "DUMMY", 2));
-    traffic.push(new Car(road.getLaneCenter(2), highest - 700, 30, 50, "DUMMY", 2));
+    traffic.push(
+      new Car(road.getLaneCenter(1), highest - 100, 30, 50, "DUMMY", (speed / 2) * 2)
+    );
+    traffic.push(
+      new Car(road.getLaneCenter(0), highest - 300, 30, 50, "DUMMY", (speed / 2) * 3)
+    );
+    traffic.push(
+      new Car(road.getLaneCenter(2), highest - 300, 30, 50, "DUMMY", (speed / 2) * 2)
+    );
+    traffic.push(
+      new Car(road.getLaneCenter(0), highest - 500, 30, 50, "DUMMY", (speed / 2) * 3)
+    );
+    traffic.push(
+      new Car(road.getLaneCenter(1), highest - 500, 30, 50, "DUMMY", (speed / 2) * 2)
+    );
+    traffic.push(
+      new Car(road.getLaneCenter(1), highest - 700, 30, 50, "DUMMY", (speed / 2) * 2)
+    );
+    traffic.push(
+      new Car(road.getLaneCenter(2), highest - 700, 30, 50, "DUMMY", (speed / 2) * 2)
+    );
     highest -= 800;
   }
 
@@ -73,7 +103,7 @@ function discardBrain() {
 function generateCars(n) {
   const cars = [];
   for (let i = 1; i < n; i++) {
-    cars.push(new Car(road.getLaneCenter(1), 100, 30, 50, "AI", 5));
+    cars.push(new Car(road.getLaneCenter(1), 100, 30, 50, "AI", (speed / 2) * 5));
   }
   return cars;
 }
