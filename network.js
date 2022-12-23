@@ -13,6 +13,20 @@ class NeuralNetwork {
     }
     return outputs;
   }
+
+  static mutate(network, rate = 1) {
+    for (let i = 0; i < network.levels.length; i++) {
+      let level = network.levels[i];
+      for (let j = 0; j < level.biases.length; j++) {
+        level.biases[j] = lerp(level.biases[j], Math.random() * 2 - 1, rate);
+      }
+      for (let j = 0; j < level.weights.length; j++) {
+        for (let k = 0; k < level.weights[j].length; k++) {
+          level.weights[j][k] = lerp(level.weights[j][k], Math.random() * 2 - 1, rate);
+        }
+      }
+    }
+  }
 }
 
 class Level {
