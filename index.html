@@ -10,8 +10,17 @@
   <body>
     <canvas id="carCanvas"></canvas>
     <div id="verticalButtons">
-      <button onclick="saveBrain()">Save Brain</button>
-      <button onclick="discardBrain()">Discard Brain</button>
+      <button onclick="saveBrain()">💾</button>
+      <button onclick="discardBrain()">❌</button>
+      <br />
+      <label for="parallelCars">Parallel Cars:</label>
+      <input type="text" id="parallelCars" name="parallelCars" value="100" /><br />
+      <label for="mutationRate">Mutation Rate:</label>
+      <input type="text" id="mutationRate" name="mutationRate" value="0.1" />
+      0: No mutation 1: Completely random<br />
+      <br />
+      <br />
+      <button onclick="restart()">Restart</button>
     </div>
     <canvas id="networkCanvas"></canvas>
     <script src="network.js"></script>
