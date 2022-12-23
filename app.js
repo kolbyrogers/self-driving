@@ -11,27 +11,17 @@ const networkCtx = networkCanvas.getContext("2d");
 
 let road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 let traffic = [];
-for (let i = 0; i < 5; i++) {
-  traffic.push(
-    new Car(
-      road.getLaneCenter(Math.floor(Math.random() * 3)),
-      -i * 200,
-      30,
-      50,
-      "DUMMY",
-      2
-    )
-  );
-  // traffic.push(
-  //   new Car(
-  //     road.getLaneCenter(Math.floor(Math.random() * 3)),
-  //     -i * 300,
-  //     30,
-  //     50,
-  //     "DUMMY",
-  //     2
-  //   )
-  // );
+
+let highest = 0;
+for (let i = 1; i < 25; i++) {
+  traffic.push(new Car(road.getLaneCenter(1), highest - 100, 30, 50, "DUMMY", 2));
+  traffic.push(new Car(road.getLaneCenter(0), highest - 300, 30, 50, "DUMMY", 3));
+  traffic.push(new Car(road.getLaneCenter(2), highest - 300, 30, 50, "DUMMY", 2));
+  traffic.push(new Car(road.getLaneCenter(0), highest - 500, 30, 50, "DUMMY", 3));
+  traffic.push(new Car(road.getLaneCenter(1), highest - 500, 30, 50, "DUMMY", 2));
+  traffic.push(new Car(road.getLaneCenter(1), highest - 700, 30, 50, "DUMMY", 2));
+  traffic.push(new Car(road.getLaneCenter(2), highest - 700, 30, 50, "DUMMY", 2));
+  highest -= 800;
 }
 let cars = generateCars(parallelCars);
 let bestCar = cars[0];
@@ -45,32 +35,21 @@ if (localStorage.getItem("bestBrain")) {
 animate();
 
 function restart() {
+  highest = 0;
   carCtx.clearRect(0, 0, carCanvas.width, carCanvas.height);
   parallelCars = document.getElementById("parallelCars").value;
   mutationRate = document.getElementById("mutationRate").value;
   road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
   traffic = [];
-  for (let i = 0; i < 5; i++) {
-    traffic.push(
-      new Car(
-        road.getLaneCenter(Math.floor(Math.random() * 3)),
-        -i * 200,
-        30,
-        50,
-        "DUMMY",
-        2
-      )
-    );
-    // traffic.push(
-    //   new Car(
-    //     road.getLaneCenter(Math.floor(Math.random() * 3)),
-    //     -i * 300,
-    //     30,
-    //     50,
-    //     "DUMMY",
-    //     2
-    //   )
-    // );
+  for (let i = 1; i < 25; i++) {
+    traffic.push(new Car(road.getLaneCenter(1), highest - 100, 30, 50, "DUMMY", 2));
+    traffic.push(new Car(road.getLaneCenter(0), highest - 300, 30, 50, "DUMMY", 3));
+    traffic.push(new Car(road.getLaneCenter(2), highest - 300, 30, 50, "DUMMY", 2));
+    traffic.push(new Car(road.getLaneCenter(0), highest - 500, 30, 50, "DUMMY", 3));
+    traffic.push(new Car(road.getLaneCenter(1), highest - 500, 30, 50, "DUMMY", 2));
+    traffic.push(new Car(road.getLaneCenter(1), highest - 700, 30, 50, "DUMMY", 2));
+    traffic.push(new Car(road.getLaneCenter(2), highest - 700, 30, 50, "DUMMY", 2));
+    highest -= 800;
   }
 
   cars = generateCars(parallelCars);
@@ -94,7 +73,7 @@ function discardBrain() {
 function generateCars(n) {
   const cars = [];
   for (let i = 1; i < n; i++) {
-    cars.push(new Car(road.getLaneCenter(1), 100, 30, 50, "AI", 4));
+    cars.push(new Car(road.getLaneCenter(1), 100, 30, 50, "AI", 5));
   }
   return cars;
 }
