@@ -5,188 +5,24 @@ networkCanvas.width = 500;
 
 let parallelCars = document.getElementById("parallelCars").value;
 let mutationRate = document.getElementById("mutationRate").value;
-let speed = 3;
 
+const speed = 2.5;
 const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
 
 let road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 let traffic = [];
-
-let highest = 0;
-for (let i = 1; i < 25; i++) {
-  traffic.push(
-    new Car(
-      road.getLaneCenter(1),
-      highest - 100,
-      30,
-      50,
-      "DUMMY",
-      (speed / 2) * 2
-    )
-  );
-  traffic.push(
-    new Car(
-      road.getLaneCenter(0),
-      highest - 300,
-      30,
-      50,
-      "DUMMY",
-      (speed / 2) * 3
-    )
-  );
-  traffic.push(
-    new Car(
-      road.getLaneCenter(2),
-      highest - 300,
-      30,
-      50,
-      "DUMMY",
-      (speed / 2) * 2
-    )
-  );
-  traffic.push(
-    new Car(
-      road.getLaneCenter(0),
-      highest - 500,
-      30,
-      50,
-      "DUMMY",
-      (speed / 2) * 3
-    )
-  );
-  traffic.push(
-    new Car(
-      road.getLaneCenter(1),
-      highest - 500,
-      30,
-      50,
-      "DUMMY",
-      (speed / 2) * 2
-    )
-  );
-  traffic.push(
-    new Car(
-      road.getLaneCenter(1),
-      highest - 700,
-      30,
-      50,
-      "DUMMY",
-      (speed / 2) * 2
-    )
-  );
-  traffic.push(
-    new Car(
-      road.getLaneCenter(2),
-      highest - 700,
-      30,
-      50,
-      "DUMMY",
-      (speed / 2) * 2
-    )
-  );
-  highest -= 800;
-}
-let cars = generateCars(parallelCars);
-let bestCar = cars[0];
-if (localStorage.getItem("bestBrain")) {
-  for (let i = 0; i < cars.length; i++) {
-    cars[i].brain = JSON.parse(localStorage.getItem("bestBrain"));
-    if (i != 0) NeuralNetwork.mutate(cars[i].brain, mutationRate);
-  }
-}
-
+let cars = [];
+createTraffic();
 animate();
 
 function restart() {
-  highest = 0;
   carCtx.clearRect(0, 0, carCanvas.width, carCanvas.height);
   parallelCars = document.getElementById("parallelCars").value;
   mutationRate = document.getElementById("mutationRate").value;
+  road = null;
   road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
-  traffic = [];
-  for (let i = 1; i < 25; i++) {
-    traffic.push(
-      new Car(
-        road.getLaneCenter(1),
-        highest - 100,
-        30,
-        50,
-        "DUMMY",
-        (speed / 2) * 2
-      )
-    );
-    traffic.push(
-      new Car(
-        road.getLaneCenter(0),
-        highest - 300,
-        30,
-        50,
-        "DUMMY",
-        (speed / 2) * 3
-      )
-    );
-    traffic.push(
-      new Car(
-        road.getLaneCenter(2),
-        highest - 300,
-        30,
-        50,
-        "DUMMY",
-        (speed / 2) * 2
-      )
-    );
-    traffic.push(
-      new Car(
-        road.getLaneCenter(0),
-        highest - 500,
-        30,
-        50,
-        "DUMMY",
-        (speed / 2) * 3
-      )
-    );
-    traffic.push(
-      new Car(
-        road.getLaneCenter(1),
-        highest - 500,
-        30,
-        50,
-        "DUMMY",
-        (speed / 2) * 2
-      )
-    );
-    traffic.push(
-      new Car(
-        road.getLaneCenter(1),
-        highest - 700,
-        30,
-        50,
-        "DUMMY",
-        (speed / 2) * 2
-      )
-    );
-    traffic.push(
-      new Car(
-        road.getLaneCenter(2),
-        highest - 700,
-        30,
-        50,
-        "DUMMY",
-        (speed / 2) * 2
-      )
-    );
-    highest -= 800;
-  }
-
-  cars = generateCars(parallelCars);
-  bestCar = cars[0];
-  if (localStorage.getItem("bestBrain")) {
-    for (let i = 0; i < cars.length; i++) {
-      cars[i].brain = JSON.parse(localStorage.getItem("bestBrain"));
-      if (i != 0) NeuralNetwork.mutate(cars[i].brain, mutationRate);
-    }
-  }
+  createTraffic();
 }
 
 function saveBrain() {
@@ -201,10 +37,88 @@ function generateCars(n) {
   const cars = [];
   for (let i = 1; i < n; i++) {
     cars.push(
-      new Car(road.getLaneCenter(1), 100, 30, 50, "AI", (speed / 2) * 5)
+      new Car(road.getLaneCenter(1), 150, 30, 50, "AI", (speed / 2) * 5)
     );
   }
   return cars;
+}
+
+function createTraffic() {
+  let highest = 0;
+  traffic = [];
+  for (let i = 2; i < 25; i++) {
+    traffic.push(
+      new Car(
+        road.getLaneCenter(0),
+        highest - 300,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
+    );
+    traffic.push(
+      new Car(
+        road.getLaneCenter(0),
+        highest - 600,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
+    );
+    if (i % 2 == 0) {
+      traffic.push(
+        new Car(
+          road.getLaneCenter(1),
+          highest - 550,
+          30,
+          50,
+          "DUMMY",
+          (speed / 2) * 2
+        )
+      );
+    }
+    traffic.push(
+      new Car(
+        road.getLaneCenter(1),
+        highest - 150,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
+    );
+    traffic.push(
+      new Car(
+        road.getLaneCenter(1),
+        highest - 800,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
+    );
+    traffic.push(
+      new Car(
+        road.getLaneCenter(2),
+        highest - 400,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
+    );
+    highest -= 800;
+  }
+  cars = generateCars(parallelCars);
+  bestCar = cars[0];
+  if (localStorage.getItem("bestBrain")) {
+    for (let i = 0; i < cars.length; i++) {
+      cars[i].brain = JSON.parse(localStorage.getItem("bestBrain"));
+      if (i != 0) NeuralNetwork.mutate(cars[i].brain, mutationRate);
+    }
+  }
 }
 
 function animate(time) {
