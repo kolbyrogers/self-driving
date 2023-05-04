@@ -16,25 +16,74 @@ let traffic = [];
 let highest = 0;
 for (let i = 1; i < 25; i++) {
   traffic.push(
-    new Car(road.getLaneCenter(1), highest - 100, 30, 50, "DUMMY", (speed / 2) * 2)
+    new Car(
+      road.getLaneCenter(1),
+      highest - 100,
+      30,
+      50,
+      "DUMMY",
+      (speed / 2) * 2
+    )
   );
   traffic.push(
-    new Car(road.getLaneCenter(0), highest - 300, 30, 50, "DUMMY", (speed / 2) * 3)
+    new Car(
+      road.getLaneCenter(0),
+      highest - 300,
+      30,
+      50,
+      "DUMMY",
+      (speed / 2) * 3
+    )
   );
   traffic.push(
-    new Car(road.getLaneCenter(2), highest - 300, 30, 50, "DUMMY", (speed / 2) * 2)
+    new Car(
+      road.getLaneCenter(2),
+      highest - 300,
+      30,
+      50,
+      "DUMMY",
+      (speed / 2) * 2
+    )
   );
   traffic.push(
-    new Car(road.getLaneCenter(0), highest - 500, 30, 50, "DUMMY", (speed / 2) * 3)
+    new Car(
+      road.getLaneCenter(0),
+      highest - 500,
+      30,
+      50,
+      "DUMMY",
+      (speed / 2) * 3
+    )
   );
   traffic.push(
-    new Car(road.getLaneCenter(1), highest - 500, 30, 50, "DUMMY", (speed / 2) * 2)
+    new Car(
+      road.getLaneCenter(1),
+      highest - 500,
+      30,
+      50,
+      "DUMMY",
+      (speed / 2) * 2
+    )
   );
   traffic.push(
-    new Car(road.getLaneCenter(1), highest - 700, 30, 50, "DUMMY", (speed / 2) * 2)
+    new Car(
+      road.getLaneCenter(1),
+      highest - 700,
+      30,
+      50,
+      "DUMMY",
+      (speed / 2) * 2
+    )
   );
   traffic.push(
-    new Car(road.getLaneCenter(2), highest - 700, 30, 50, "DUMMY", (speed / 2) * 2)
+    new Car(
+      road.getLaneCenter(2),
+      highest - 700,
+      30,
+      50,
+      "DUMMY",
+      (speed / 2) * 2
+    )
   );
   highest -= 800;
 }
@@ -59,25 +108,74 @@ function restart() {
   traffic = [];
   for (let i = 1; i < 25; i++) {
     traffic.push(
-      new Car(road.getLaneCenter(1), highest - 100, 30, 50, "DUMMY", (speed / 2) * 2)
+      new Car(
+        road.getLaneCenter(1),
+        highest - 100,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
     );
     traffic.push(
-      new Car(road.getLaneCenter(0), highest - 300, 30, 50, "DUMMY", (speed / 2) * 3)
+      new Car(
+        road.getLaneCenter(0),
+        highest - 300,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 3
+      )
     );
     traffic.push(
-      new Car(road.getLaneCenter(2), highest - 300, 30, 50, "DUMMY", (speed / 2) * 2)
+      new Car(
+        road.getLaneCenter(2),
+        highest - 300,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
     );
     traffic.push(
-      new Car(road.getLaneCenter(0), highest - 500, 30, 50, "DUMMY", (speed / 2) * 3)
+      new Car(
+        road.getLaneCenter(0),
+        highest - 500,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 3
+      )
     );
     traffic.push(
-      new Car(road.getLaneCenter(1), highest - 500, 30, 50, "DUMMY", (speed / 2) * 2)
+      new Car(
+        road.getLaneCenter(1),
+        highest - 500,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
     );
     traffic.push(
-      new Car(road.getLaneCenter(1), highest - 700, 30, 50, "DUMMY", (speed / 2) * 2)
+      new Car(
+        road.getLaneCenter(1),
+        highest - 700,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
     );
     traffic.push(
-      new Car(road.getLaneCenter(2), highest - 700, 30, 50, "DUMMY", (speed / 2) * 2)
+      new Car(
+        road.getLaneCenter(2),
+        highest - 700,
+        30,
+        50,
+        "DUMMY",
+        (speed / 2) * 2
+      )
     );
     highest -= 800;
   }
@@ -103,7 +201,9 @@ function discardBrain() {
 function generateCars(n) {
   const cars = [];
   for (let i = 1; i < n; i++) {
-    cars.push(new Car(road.getLaneCenter(1), 100, 30, 50, "AI", (speed / 2) * 5));
+    cars.push(
+      new Car(road.getLaneCenter(1), 100, 30, 50, "AI", (speed / 2) * 5)
+    );
   }
   return cars;
 }
@@ -137,6 +237,5 @@ function animate(time) {
   carCtx.restore();
 
   networkCtx.lineDashOffset = -time / 30;
-  Visualizer.drawNetwork(networkCtx, bestCar.brain);
   requestAnimationFrame(animate);
 }

@@ -14,10 +14,16 @@
       <button onclick="discardBrain()">❌</button>
       <br />
       <label for="parallelCars">Parallel Cars:</label>
-      <input type="text" id="parallelCars" name="parallelCars" value="500" /><br />
+      <input
+        type="text"
+        id="parallelCars"
+        name="parallelCars"
+        value="500"
+      /><br />
       <label for="mutationRate">Mutation Rate:</label>
       0: No mutation 1: Completely random<br />
-      <input type="text" id="mutationRate" name="mutationRate" value="0.1" /> <br />
+      <input type="text" id="mutationRate" name="mutationRate" value="0.1" />
+      <br />
       <label for="speed">Speed:</label>
       <input type="text" id="speed" name="speed" value="2" />
       <br />
@@ -26,7 +32,6 @@
     </div>
     <canvas id="networkCanvas"></canvas>
     <script src="network.js"></script>
-    <script src="visualizer.js"></script>
     <script src="sensor.js"></script>
     <script src="utils.js"></script>
     <script src="road.js"></script>

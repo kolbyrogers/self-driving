@@ -22,7 +22,11 @@ class NeuralNetwork {
       }
       for (let j = 0; j < level.weights.length; j++) {
         for (let k = 0; k < level.weights[j].length; k++) {
-          level.weights[j][k] = lerp(level.weights[j][k], Math.random() * 2 - 1, rate);
+          level.weights[j][k] = lerp(
+            level.weights[j][k],
+            Math.random() * 2 - 1,
+            rate
+          );
         }
       }
     }
