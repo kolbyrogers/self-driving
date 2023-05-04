@@ -17,7 +17,6 @@
   <p align="center">
     An awesome javascript web app for a self driving car simulation!
     <br />
-    ![image](https://user-images.githubusercontent.com/66968736/236113839-d3de6121-f6f7-45a8-8fb5-70166a24eb0b.png)
     <br />
     <a href="https://kolbyrogers.github.io/self-driving/" target="_blank">View Demo</a>
     ·
@@ -28,7 +27,7 @@
 </div>
 
 <!-- ABOUT THE PROJECT -->
-
+![image](https://user-images.githubusercontent.com/66968736/236113839-d3de6121-f6f7-45a8-8fb5-70166a24eb0b.png)
 ## About The Project
 
 This self-driving car simulation is a JavaScript application that simulates the behavior of a self-driving car without the use of any frameworks. It includes realistic physics for the car, allowing it to accelerate, brake, and experience friction. The simulation uses ray casting and linear interpolation to detect collisions and other objects in the environment. A neural network controls the car's actions and decision-making processes, while a genetic algorithm is used to optimize the car's performance and improve its ability to navigate through the environment.
