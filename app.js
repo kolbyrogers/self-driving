@@ -5,7 +5,7 @@ networkCanvas.width = 500;
 
 let parallelCars = document.getElementById("parallelCars").value;
 let mutationRate = document.getElementById("mutationRate").value;
-let speed = document.getElementById("speed").value;
+let speed = 3;
 
 const carCtx = carCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
@@ -103,7 +103,6 @@ function restart() {
   carCtx.clearRect(0, 0, carCanvas.width, carCanvas.height);
   parallelCars = document.getElementById("parallelCars").value;
   mutationRate = document.getElementById("mutationRate").value;
-  speed = document.getElementById("speed").value;
   road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
   traffic = [];
   for (let i = 1; i < 25; i++) {

@@ -10,6 +10,9 @@
   <body>
     <canvas id="carCanvas"></canvas>
     <div id="verticalButtons">
+      <p>
+        Tinker with the settings and click save whenever you get a 'smarter' car
+      </p>
       <button onclick="saveBrain()">💾</button>
       <button onclick="discardBrain()">❌</button>
       <br />
@@ -21,12 +24,9 @@
         value="500"
       /><br />
       <label for="mutationRate">Mutation Rate:</label>
-      0: No mutation 1: Completely random<br />
+      <br />
       <input type="text" id="mutationRate" name="mutationRate" value="0.1" />
-      <br />
-      <label for="speed">Speed:</label>
-      <input type="text" id="speed" name="speed" value="2" />
-      <br />
+      <p>0: No mutation 1: Completely random</p>
       <br />
       <button onclick="restart()">Restart</button>
     </div>
